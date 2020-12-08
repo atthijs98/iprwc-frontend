@@ -1,0 +1,13 @@
+<nav>
+  <div class="nav-wrapper teal">
+    <!--    <a href="/" class="brand-logo"><img src="/assets/images/saa_logo.png" alt="SAA"></a>-->
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li [ngClass]="{invisible: this.userService.isLoggedIn()}">
+        <a [routerLink]="['/login']">Sign in</a>
+      </li>
+      <li [ngClass]="{invisible: !(this.userService.isLoggedIn())}">
+        <a (click)="logout()">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
