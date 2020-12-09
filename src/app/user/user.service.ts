@@ -42,7 +42,7 @@ export class UserService {
     this.currentUser = null;
   }
 
-  register(name: string, email: string, password: string) {
+  register(name: string, email: string, password: string)  {
     return this.apiService.post({
       endPoint: `/${this.PREFIX}/register`,
       body: new HttpParams()

@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule} from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,16 +19,22 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSelectModule} from '@angular/material';
+import {MatSelectModule, MatSidenavModule, MatTabsModule, MatListModule} from '@angular/material';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { SidenavListComponent } from './sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    AccountListComponent
+    AccountListComponent,
+    SidenavListComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
     HttpClientModule,
     AppRoutingModule,
     SharedModule,
@@ -37,7 +44,12 @@ import {MatSelectModule} from '@angular/material';
     MatPaginatorModule,
     MatSortModule,
     MatToolbarModule,
-    MatSelectModule
+    MatSelectModule,
+    MatTabsModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatIconModule,
+    MatListModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},

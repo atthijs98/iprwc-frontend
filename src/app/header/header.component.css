@@ -1,16 +1,37 @@
-.brand-logo, .brand-logo img {
-  height: 100%;
+/*.brand-logo, .brand-logo img {*/
+/*  height: 100%;*/
+/*}*/
+
+/*.profile-picture {*/
+
+/*  display: inline-block;*/
+/*  border-radius: 100%;*/
+/*  height: 75%;*/
+/*  margin: 12.5% 0;*/
+
+/*}*/
+
+/*.invisible {*/
+/*  display: none;*/
+/*}*/
+
+a {
+  text-decoration: none;
+  color: white;
 }
 
-.profile-picture {
-
-  display: inline-block;
-  border-radius: 100%;
-  height: 75%;
-  margin: 12.5% 0;
-
+a:hover, a:active{
+  color: lightgray;
 }
 
-.invisible {
-  display: none;
+.navigation-items{
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+@media(max-width: 959px){
+  mat-toolbar{
+    border-radius: 0px;
+  }
 }

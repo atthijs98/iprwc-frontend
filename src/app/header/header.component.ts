@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {UserService} from '../user/user.service';
+
 
 @Component({
   selector: 'app-header',
@@ -8,6 +9,8 @@ import {UserService} from '../user/user.service';
 })
 export class HeaderComponent implements OnInit {
 
+  @Output() public sidenavToggle = new EventEmitter();
+
   constructor(public userService: UserService) { }
 
   ngOnInit() {
@@ -15,6 +18,10 @@ export class HeaderComponent implements OnInit {
 
   logout(): void {
     this.userService.logout();
+  }
+
+  public onToggleSidenav = () => {
+    this.sidenavToggle.emit();
   }
 
 }

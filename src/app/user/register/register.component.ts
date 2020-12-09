@@ -14,12 +14,13 @@ export class RegisterComponent implements OnInit {
 
   constructor(private userService: UserService, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
   }
 
-  onSubmit() {
+  onSubmit(): void {
     if (this.formGroup.valid) {
       const formValues = this.formGroup.form.value;
+      console.log(formValues);
       if (this.regex.test(formValues.password) && formValues.password === formValues.passwordRepeat) {
         this.userService.register(formValues.personName, formValues.email, formValues.password).subscribe((body) => {
           this.router.navigate(['login']);
