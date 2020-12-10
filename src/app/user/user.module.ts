@@ -5,6 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { RegisterComponent } from './register/register.component';
 import { userRoutes } from './user.routes';
+import {MatCardModule, MatInputModule} from '@angular/material';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
 
 
 
@@ -13,7 +16,11 @@ import { userRoutes } from './user.routes';
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule.forRoot(userRoutes)
+    RouterModule.forRoot(userRoutes),
+    MatInputModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
   ]
 })
 export class UserModule { }

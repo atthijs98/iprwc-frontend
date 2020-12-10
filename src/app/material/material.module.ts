@@ -5,7 +5,15 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import {MatSelectModule, MatSidenavModule, MatTabsModule, MatListModule, MatMenuModule} from '@angular/material';
+import {
+  MatSelectModule,
+  MatSidenavModule,
+  MatTabsModule,
+  MatListModule,
+  MatMenuModule,
+  MatCardModule,
+  MatInputModule
+} from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
@@ -13,6 +21,8 @@ import { MatButtonModule } from '@angular/material/button';
   declarations: [],
   imports: [
     CommonModule,
+    MatInputModule,
+    MatCardModule,
     MatTabsModule,
     MatSidenavModule,
     MatToolbarModule,
@@ -26,6 +36,8 @@ import { MatButtonModule } from '@angular/material/button';
     MatMenuModule
   ],
   exports: [
+    MatCardModule,
+    MatInputModule,
     MatTabsModule,
     MatSidenavModule,
     MatToolbarModule,
