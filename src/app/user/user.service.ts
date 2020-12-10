@@ -60,7 +60,7 @@ export class UserService {
     }
   }
 
-  isLoggedIn() {
+  isLoggedIn(): any {
     return this.currentUser !== null && localStorage.getItem('user') !== null;
   }
 

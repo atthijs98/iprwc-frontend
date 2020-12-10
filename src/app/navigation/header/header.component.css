@@ -1,20 +1,3 @@
-/*.brand-logo, .brand-logo img {*/
-/*  height: 100%;*/
-/*}*/
-
-/*.profile-picture {*/
-
-/*  display: inline-block;*/
-/*  border-radius: 100%;*/
-/*  height: 75%;*/
-/*  margin: 12.5% 0;*/
-
-/*}*/
-
-/*.invisible {*/
-/*  display: none;*/
-/*}*/
-
 a {
   text-decoration: none;
   color: white;
@@ -28,6 +11,10 @@ a:hover, a:active{
   list-style-type: none;
   padding: 0;
   margin: 0;
+}
+
+.invisible {
+  display: none;
 }
 
 @media(max-width: 959px){
