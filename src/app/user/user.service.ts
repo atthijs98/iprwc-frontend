@@ -6,6 +6,8 @@ import { User } from '../shared/user.model';
 import {catchError} from 'rxjs/operators';
 import {error} from 'util';
 
+import {MatSnackBar} from '@angular/material';
+import {throwError} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -13,7 +15,7 @@ export class UserService {
   PREFIX = 'users';
   public redirectURL: string;
 
-  constructor(private apiService: ApiService, private router: Router) {
+  constructor(private apiService: ApiService, private router: Router, private snackBar: MatSnackBar) {
     const currentUser = localStorage.getItem('user');
     if (currentUser !== null) {
       this.currentUser = JSON.parse(currentUser);
@@ -28,7 +30,10 @@ export class UserService {
         .set('password', password)
     }, false);
     response.pipe(
-      // catchError((error: HttpErrorResponse) => M.toast({html: `${error.error.message}`}))
+      catchError(err => {
+        this.snackBar.open(err.error.message);
+        return throwError(err);
+      })
     ).subscribe((data) => {
       this.currentUser = data.content;
       localStorage.setItem('user', JSON.stringify(this.currentUser));
@@ -42,6 +47,7 @@ export class UserService {
     this.currentUser = null;
   }
 
+  // tslint:disable-next-line:typedef
   register(name: string, email: string, password: string)  {
     return this.apiService.post({
       endPoint: `/${this.PREFIX}/register`,
@@ -50,7 +56,10 @@ export class UserService {
         .set('email', email)
         .set('password', password)
     }, false).pipe(
-      // catchError((error) => M.toast({html: `${error.message}`}))
+      catchError(err => {
+        this.snackBar.open(err.error.message);
+        return throwError(err);
+      })
     );
   }
 
