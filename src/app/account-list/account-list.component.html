@@ -16,10 +16,9 @@
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Privilege</th>
       <td mat-cell *matCellDef="let row">
         <mat-form-field appearance="fill">
-          <mat-select value="{{row.privilege}}" (change)="changeUserPrivilege($event.target, row)">
+          <mat-select value="{{row.privilege}}" (selectionChange)="changeUserPrivilege($event, row)">
             <mat-option value="0">User</mat-option>
             <mat-option value="1">Admin</mat-option>
-            <mat-option value="2">Super admin</mat-option>
           </mat-select>
         </mat-form-field>
       </td>

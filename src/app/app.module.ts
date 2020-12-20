@@ -27,6 +27,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ProductItemComponent } from './product/product-list/product-item/product-item.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
 import { ProductEditComponent } from './product/product-edit/product-edit.component';
+import {ApiService} from './shared/services/api.service';
+import {AccountManagementService} from './shared/services/account-management.service';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { ProductEditComponent } from './product/product-edit/product-edit.compon
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
+    ApiService,
+    AccountManagementService
   ],
   bootstrap: [AppComponent]
 })
