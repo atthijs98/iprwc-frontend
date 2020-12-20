@@ -2,12 +2,8 @@ import {DataSource} from '@angular/cdk/collections';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {map} from 'rxjs/operators';
-import {combineLatest, merge, Observable, of as observableOf} from 'rxjs';
+import {merge, Observable, of as observableOf} from 'rxjs';
 import {User} from '../shared/user.model';
-import {Injectable, OnInit} from '@angular/core';
-import {ApiService} from '../shared/services/api.service';
-import {AccountManagementService} from '../shared/services/account-management.service';
-import {HttpParams} from '@angular/common/http';
 
 
 /**

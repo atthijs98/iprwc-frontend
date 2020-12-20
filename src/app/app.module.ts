@@ -17,13 +17,31 @@ import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthenticationInterceptor} from './shared/authentication.interceptor';
 import { AccountListComponent } from './account-list/account-list.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
+import { AdminComponent } from './admin/admin.component';
+import { ProfileComponent } from './profile/profile.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import { ProductComponent } from './product/product.component';
+import {MatGridListModule} from '@angular/material';
+import { ProductListComponent } from './product/product-list/product-list.component';
+import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { ProductItemComponent } from './product/product-list/product-item/product-item.component';
+import { ProductDetailComponent } from './product/product-detail/product-detail.component';
+import { ProductEditComponent } from './product/product-edit/product-edit.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AccountListComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    AdminComponent,
+    ProfileComponent,
+    ProductComponent,
+    ProductListComponent,
+    ShoppingListComponent,
+    ProductItemComponent,
+    ProductDetailComponent,
+    ProductEditComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +52,9 @@ import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.com
     SharedModule,
     ServiceWorkerModule.register('ngsw-worker.js', {enabled: environment.production}),
     UserModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule,
+    MatGridListModule
   ],
   providers: [
     {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},

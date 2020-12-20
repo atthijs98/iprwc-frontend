@@ -7,7 +7,7 @@ import {catchError} from 'rxjs/operators';
 import {error} from 'util';
 
 import {MatSnackBar} from '@angular/material';
-import {throwError} from 'rxjs';
+import {Observable, Subscription, throwError} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class UserService {
@@ -41,14 +41,14 @@ export class UserService {
     });
   }
 
-  logout() {
+
+  logout(): void {
     this.router.navigate(['login']);
     localStorage.removeItem('user');
     this.currentUser = null;
   }
 
-  // tslint:disable-next-line:typedef
-  register(name: string, email: string, password: string)  {
+  register(name: string, email: string, password: string): any  {
     return this.apiService.post({
       endPoint: `/${this.PREFIX}/register`,
       body: new HttpParams()
@@ -56,14 +56,43 @@ export class UserService {
         .set('email', email)
         .set('password', password)
     }, false).pipe(
-      catchError(err => {
-        this.snackBar.open(err.error.message);
-        return throwError(err);
-      })
-    );
+      catchError(async (err) => this.snackBar.open(err.error.message))
+    ).subscribe((data) => {
+      this.snackBar.open(data.message, '', {
+        duration: 3000
+      });
+    });
   }
 
-  isAuthorized() {
+  // tslint:disable-next-line:typedef
+  changeUserPassword(userId: number, password: string) {
+    return this.apiService.post({
+      endPoint: `/${this.PREFIX}/password/` + userId,
+      body: new HttpParams().set('password', password)
+    }, false).pipe(
+      catchError(async (err) => this.snackBar.open(err.error.message))
+    ).subscribe((data) => {
+      this.snackBar.open(data.message, '', {
+        duration: 3000
+      });
+    });
+  }
+
+  // alterLanguage(jsonData: string): Promise<User> {
+  //   return new Promise<User>(resolve => {
+  //     this.apiService.postJSON({endPoint: `/${this.PREFIX}/language/alter`}, jsonData)
+  //       .pipe(
+  //         map(response => {
+  //           return (response as any).content as User;
+  //         })
+  //       ).subscribe((p) => {
+  //       this.currentUser.language = p.language;
+  //       resolve();
+  //     });
+  //   });
+  // }
+
+  isAuthorized(): boolean {
     if (this.currentUser !== null) {
       return this.currentUser.privilege > 0;
     }
@@ -76,6 +105,21 @@ export class UserService {
   setNewAuthToken(authToken: string) {
     this.currentUser.authToken = authToken;
     localStorage.setItem('user', JSON.stringify(this.currentUser));
+  }
+
+
+  // tslint:disable-next-line:typedef
+  parseAuthToken(id: number) {
+    const token = JSON.parse(localStorage.getItem('user'));
+    const t = token.authToken;
+    const base64Url = t.split('.')[1];
+    const base64 = base64Url.replace(/g/, '+').replace(/_/g, '/');
+    const result = JSON.parse(window.atob(base64Url)).id;
+    if (result === id) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
 }

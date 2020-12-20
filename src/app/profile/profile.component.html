@@ -1,0 +1,41 @@
+<mat-card>
+  <mat-card-content>
+    <h2>{{this.currentUser.name }}</h2>
+    <mat-card-subtitle>This is a user profile. This space is reserved for relevant user information.
+    </mat-card-subtitle>
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Change password
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <form (ngSubmit)="onSubmit()" [formGroup]="changePasswordForm">
+          <mat-form-field class="full-width-input">
+            <mat-label>Please enter a new password</mat-label>
+            <input matInput formControlName="password" maxlength="255" autocomplete="off" type="password" required (input)="onPasswordInput()">
+            <mat-error *ngIf="changePasswordForm.get('password').hasError('required')">
+              You must enter a password
+            </mat-error>
+            <mat-error *ngIf="changePasswordForm.get('password').hasError('pattern')">
+              Password is not valid
+            </mat-error>
+          </mat-form-field>
+          <mat-form-field class="full-width-input">
+            <mat-label>Confirm your password</mat-label>
+            <input matInput formControlName="repeatPassword" maxlength="255"  autocomplete="off" type="password" required (input)="onPasswordInput()">
+            <mat-error *ngIf="changePasswordForm.get('repeatPassword').hasError('required')">
+              Please confirm your password
+            </mat-error>
+            <mat-error *ngIf="repeatPassword.invalid && !repeatPassword.hasError('required')">
+              Passwords don't match
+            </mat-error>
+          </mat-form-field>
+          <button mat-raised-button color="primary" type="submit" [disabled]="!changePasswordForm.valid">
+            Submit new password
+          </button>
+        </form>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </mat-card-content>
+</mat-card>

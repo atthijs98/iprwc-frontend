@@ -12,7 +12,7 @@ import {
   MatListModule,
   MatMenuModule,
   MatCardModule,
-  MatInputModule, MatSnackBarModule
+  MatInputModule, MatSnackBarModule, MatExpansionModule, MatGridListModule
 } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
@@ -34,7 +34,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatSortModule,
     MatSelectModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatGridListModule
   ],
   exports: [
     MatCardModule,
@@ -50,7 +52,9 @@ import { MatButtonModule } from '@angular/material/button';
     MatSortModule,
     MatSelectModule,
     MatMenuModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatExpansionModule,
+    MatGridListModule
   ]
 })
 export class MaterialModule { }
