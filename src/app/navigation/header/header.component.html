@@ -9,8 +9,11 @@
   </div>
   <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
     <ul fxLayout fxLayoutGap="15px" class="navigation-items">
+      <li>
+        <a [routerLink]="['/product']">Products</a>
+      </li>
       <li [ngClass]="{invisible: !(this.userService.isLoggedIn() && this.userService.isAuthorized())}" >
-        <a [routerLink]="['/account-list']">Admin panel</a>
+        <a [routerLink]="['/admin']">Admin panel</a>
       </li>
       <li [ngClass]="{invisible: !(this.userService.isLoggedIn())}">
         <a *ngIf="this.userService.currentUser" [routerLink]="['/profile/' + this.userService.currentUser.id ]">{{this.userService.currentUser.name}}</a>

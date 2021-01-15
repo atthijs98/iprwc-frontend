@@ -7,13 +7,15 @@ import {Observable} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class UserResolverService implements Resolve<User[]> {
-  constructor(private apiService: ApiService, private accountManagementService: AccountManagementService) {}
+  constructor(private apiService: ApiService, private accountManagementService: AccountManagementService) {
+  }
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     const users = this.accountManagementService.getUsers();
     if (users.length === 0) {
       return this.accountManagementService.fetchUsers();
     } else {
+      // @ts-ignore
       return users;
     }
   }

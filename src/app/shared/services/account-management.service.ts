@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {Injectable, EventEmitter} from '@angular/core';
 import {Observable, Subject, Subscription, throwError} from 'rxjs';
 import {catchError, map, merge, tap} from 'rxjs/operators';
 import {HttpErrorResponse, HttpParams} from '@angular/common/http';
@@ -7,8 +7,10 @@ import {ApiService} from './api.service';
 import {MatPaginator, MatSnackBar, MatSort} from '@angular/material';
 import {resolve} from 'url';
 
+
 @Injectable()
 export class AccountManagementService {
+  userSelected = new EventEmitter<User>();
   usersChanged = new Subject<User[]>();
   PREFIX = 'users';
 
@@ -28,7 +30,7 @@ export class AccountManagementService {
 
   getUser(id: number): User {
     for (let i = 0; i < this.users.length; i++) {
-      if (id === this.users[i]['id']) {
+      if (id === this.users[i].id) {
         return this.users[i];
       }
     }
@@ -36,7 +38,7 @@ export class AccountManagementService {
 
   deleteUser(id: number): Subscription {
     for (let i = 0; i < this.users.length; i++) {
-      if (id === this.users[i]['id']) {
+      if (id === this.users[i].id) {
         this.users.splice(i, 1);
         this.usersChanged.next(this.users.slice());
       }
@@ -81,7 +83,7 @@ export class AccountManagementService {
 
   updateUser(user): void {
     for (let i = 0; i < this.users.length; i++) {
-      if (user.id === this.users[i]['id']) {
+      if (user.id === this.users[i].id) {
         this.users[i] = user;
         this.usersChanged.next(this.users.slice());
       }

@@ -88,7 +88,7 @@ export class ApiService {
   * this.api.postJSON({ endPoint: `${this.PREFIX}/register` }, jsonData);
   *
   * Whereas the PREFIX is stored in the service and api is the name given in the constructor of the service. */
-  postJSON(options: IApiOptions, jsonData: string) {
+  postJSON(options: IApiOptions, jsonData: string): Observable<any> {
     options = this.configureOptions(options);
 
     const headers: HttpHeaders = new HttpHeaders()

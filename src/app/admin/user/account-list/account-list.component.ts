@@ -3,9 +3,9 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
 import { AccountListDataSource } from './account-list-datasource';
-import {AccountManagementService} from '../shared/services/account-management.service';
-import {User} from '../shared/user.model';
-import {UserService} from '../user/user.service';
+import {AccountManagementService} from '../../../shared/services/account-management.service';
+import {User} from '../../../shared/user.model';
+import {UserService} from '../../../user/user.service';
 import {Subscription} from 'rxjs';
 
 @Component({
@@ -23,7 +23,7 @@ export class AccountListComponent implements OnInit, OnDestroy {
   dataSource: AccountListDataSource;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['email', 'name', 'privilege', 'action'];
+  displayedColumns = ['email', 'name', 'privilege', 'orders', 'action'];
 
   constructor(private accountManagementService: AccountManagementService, private userService: UserService) {
   }

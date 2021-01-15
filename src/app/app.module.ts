@@ -15,7 +15,7 @@ import {SharedModule} from './shared/shared.module';
 import {ResponseInterceptor} from './shared/response.interceptor';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import {AuthenticationInterceptor} from './shared/authentication.interceptor';
-import { AccountListComponent } from './account-list/account-list.component';
+import { AccountListComponent } from './admin/user/account-list/account-list.component';
 import { SidenavListComponent } from './navigation/sidenav-list/sidenav-list.component';
 import { AdminComponent } from './admin/admin.component';
 import { ProfileComponent } from './profile/profile.component';
@@ -26,15 +26,25 @@ import { ProductListComponent } from './product/product-list/product-list.compon
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { ProductItemComponent } from './product/product-list/product-item/product-item.component';
 import { ProductDetailComponent } from './product/product-detail/product-detail.component';
-import { ProductEditComponent } from './product/product-edit/product-edit.component';
 import {ApiService} from './shared/services/api.service';
 import {AccountManagementService} from './shared/services/account-management.service';
+import {ProductManagementListComponent} from './admin/product/product-list/product-management-list.component';
+import {ProductService} from './product/product.service';
+import {ShoppingListService} from './shopping-list/shopping-list.service';
+import {ProductManagementComponent} from './admin/product/product-management.component';
+import {ProductManagementEditComponent} from './admin/product/product-edit/product-management-edit.component';
+import {ProductManagementDetailComponent} from './admin/product/product-detail/product-management-detail.component';
+import { ProductManagementStartComponent } from './admin/product/product-start/product-management-start.component';
+import {AccountManagementComponent} from './admin/user/account-management.component';
+import {AccountManagementStartComponent} from './admin/user/account-start/account-management-start.component';
+import {AccountManagementDetailComponent} from './admin/user/account-detail/account-management-detail.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     AccountListComponent,
+    ProductManagementListComponent,
     SidenavListComponent,
     AdminComponent,
     ProfileComponent,
@@ -43,7 +53,13 @@ import {AccountManagementService} from './shared/services/account-management.ser
     ShoppingListComponent,
     ProductItemComponent,
     ProductDetailComponent,
-    ProductEditComponent
+    ProductManagementEditComponent,
+    ProductManagementDetailComponent,
+    ProductManagementComponent,
+    ProductManagementStartComponent,
+    AccountManagementComponent,
+    AccountManagementDetailComponent,
+    AccountManagementStartComponent
   ],
   imports: [
     BrowserModule,
@@ -62,7 +78,9 @@ import {AccountManagementService} from './shared/services/account-management.ser
     {provide: HTTP_INTERCEPTORS, useClass: ResponseInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: AuthenticationInterceptor, multi: true},
     ApiService,
-    AccountManagementService
+    AccountManagementService,
+    ProductService,
+    ShoppingListService
   ],
   bootstrap: [AppComponent]
 })

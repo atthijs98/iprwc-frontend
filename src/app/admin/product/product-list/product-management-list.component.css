@@ -5,12 +5,8 @@
   width: 80%;
   margin: 0 auto;
 }
-.delete-btn {
+.delete-btn, .edit-btn, .details-btn {
   cursor: pointer;
-}
-
-.delete-btn > mat-icon {
-  color: red;
 }
 
 td.mat-cell:last-of-type, th.mat-header-cell:last-of-type {
@@ -29,3 +25,11 @@ button:disabled {
 button:disabled > mat-icon {
   color: rgba(0,0,0,.12);
 }
+
+.poster {
+  max-width: 50px;
+  height: auto;
+  padding: 1.5%;
+}
+
+
