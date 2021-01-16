@@ -9,11 +9,12 @@ import {ProductManagementEditComponent} from './admin/product/product-edit/produ
 import {ProductManagementDetailComponent} from './admin/product/product-detail/product-management-detail.component';
 import {ProductManagementStartComponent} from './admin/product/product-start/product-management-start.component';
 import {ProductManagementComponent} from './admin/product/product-management.component';
+import {Role} from './models/roles.model';
 
 const routes: Routes = [
   { path: 'profile/:userId', component: ProfileComponent, canActivate: [AuthenticatedGuard]},
-  {path: 'admin', component: AdminComponent, canActivate: [AuthenticatedGuard]},
-  {path: 'product-management', component: ProductManagementComponent, canActivate: [AuthenticatedGuard], resolve: [ProductResolverService], children: [
+  {path: 'admin', component: AdminComponent, canActivate: [AuthenticatedGuard], data: {roles: [Role.Admin]}},
+  {path: 'product-management', component: ProductManagementComponent, data: {roles: [Role.Admin]}, canActivate: [AuthenticatedGuard], resolve: [ProductResolverService], children: [
       {path: '', component: ProductManagementStartComponent },
       {path: 'new', component: ProductManagementEditComponent},
       {path: ':id', component: ProductManagementDetailComponent},

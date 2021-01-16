@@ -18,7 +18,15 @@ export class AuthenticatedGuard implements CanActivate, CanActivateChild {
     } else if ((route.routeConfig.path === 'register' || route.routeConfig.path === 'login') && !this.userService.isLoggedIn()) {
       return true;
     } else if (this.userService.isLoggedIn()) {
-      return true;
+      if (Object.keys(route.data).length <= 0) {
+        return true;
+      } else {
+        if (this.userService.isAuthorized()) {
+          return true;
+        } else {
+          return false;
+        }
+      }
     }
 
     this.router.navigate(['login']);
